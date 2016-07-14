@@ -50,12 +50,12 @@ class LEDBoardCharacteristic(Characteristic):
     def WriteLEDList(self):
         self.i2cbus.writeList(00, self.led_list)
 
-    def ReadValue(self, options):
+    def ReadValue(self):
         self.ReadLEDList()
         print('LEDBoardCharacteristic read: ' + repr(self.led_list))
         return [dbus.Byte(x) for x in self.led_list]
 
-    def WriteValue(self, value, options):
+    def WriteValue(self, value):
         print('LEDBoardCharacteristic Write: ' + repr(value))
         if len(value) != 16:
             raise InvalidValueLengthException()

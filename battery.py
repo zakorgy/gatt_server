@@ -61,11 +61,11 @@ class BatteryLevelCharacteristic(Characteristic):
         self.notify_battery_level()
         return True
 
-    def ReadValue(self, options):
+    def ReadValue(self):
         print('Battery Level read: ' + repr(self.battery_lvl))
         return [dbus.Byte(self.battery_lvl)]
 
-    def WriteValue(self, value, options):
+    def WriteValue(self, value):
         print('Battery Level write')
         if len(value) != 1:
             raise InvalidValueLengthException()
